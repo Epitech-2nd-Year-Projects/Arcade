@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(SOURCES
   src/main.cpp
+  src/Core/LibraryLoader.cpp
 )
 
 add_executable(arcade ${SOURCES})
