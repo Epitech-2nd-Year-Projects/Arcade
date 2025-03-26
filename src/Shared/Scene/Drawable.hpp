@@ -1,6 +1,5 @@
 #pragma once
 
-#include "GamePosition.hpp"
 #include <string>
 
 namespace Arcade::Shared::Scene {
@@ -18,7 +17,7 @@ public:
   std::pair<float, float> getPosition() const override;
 
 protected:
-  GamePosition m_position;
+  std::pair<float, float> m_position;
 };
 
 class GameText final : public Drawable {
