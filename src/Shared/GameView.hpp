@@ -2,8 +2,6 @@
 
 #include "Scene/GameScene.hpp"
 #include <chrono>
-#include <cstddef>
-#include <utility>
 
 namespace Arcade::Shared {
 class GameView {
