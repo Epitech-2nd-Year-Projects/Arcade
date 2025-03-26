@@ -7,6 +7,6 @@ class IDisplay {
 public:
   virtual ~IDisplay() = default;
 
-  virtual void display(IGameView &gameView) = 0;
+  virtual void display(GameView &gameView) = 0;
 };
 } // namespace Arcade::Shared

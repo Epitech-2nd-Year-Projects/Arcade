@@ -6,6 +6,6 @@ class IGame {
 public:
   virtual ~IGame() = default;
 
-  virtual IGameView &gameLoop() = 0;
+  virtual GameView &gameLoop() = 0;
 };
 } // namespace Arcade::Shared
