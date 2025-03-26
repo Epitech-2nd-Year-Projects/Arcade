@@ -23,9 +23,6 @@ public:
   std::chrono::milliseconds getPartyDuration() const;
   void setPartyDuration(std::chrono::milliseconds duration);
 
-  std::pair<std::size_t, std::size_t> getMapSize() const;
-  void setMapSize(std::size_t width, std::size_t height);
-
   const Scene::GameScene &getScene() const;
   void setScene(const Scene::GameScene &scene);
 
