@@ -13,6 +13,15 @@ public:
 
 class Drawable : public IDrawable {
 public:
+  Drawable() = default;
+  ~Drawable();
+
+  Drawable(const Drawable &) = delete;
+  Drawable &operator=(const Drawable &) = delete;
+
+  Drawable(Drawable &&other) noexcept;
+  Drawable &operator=(Drawable &&other) noexcept;
+
   void setPosition(float x, float y) override;
   std::pair<float, float> getPosition() const override;
 
