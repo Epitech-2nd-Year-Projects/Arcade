@@ -13,5 +13,6 @@ public:
 
 private:
   std::vector<std::unique_ptr<IDrawable>> m_drawables;
+  std::pair<std::size_t, std::size_t> m_mapSize = {0, 0};
 };
 } // namespace Arcade::Shared::Scene

@@ -23,7 +23,6 @@ public:
 private:
   int m_score = 0;
   std::chrono::milliseconds m_partyDuration = std::chrono::milliseconds(0);
-  std::pair<std::size_t, std::size_t> m_mapSize = {0, 0};
   Scene::GameScene m_scene;
 };
 } // namespace Arcade::Shared
