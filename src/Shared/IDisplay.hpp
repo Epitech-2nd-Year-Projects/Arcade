@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IGameView.hpp"
+#include "GameView.hpp"
 
 namespace Arcade::Shared {
 class IDisplay {
