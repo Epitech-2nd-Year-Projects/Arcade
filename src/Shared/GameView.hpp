@@ -8,6 +8,15 @@
 namespace Arcade::Shared {
 class GameView {
 public:
+  GameView() = default;
+  ~GameView();
+
+  GameView(const GameView &) = delete;
+  GameView &operator=(const GameView &) = delete;
+
+  GameView(GameView &&other) noexcept;
+  GameView &operator=(GameView &&other) noexcept;
+
   int getScore() const;
   void setScore(int score);
 
