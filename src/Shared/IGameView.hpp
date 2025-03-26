@@ -1,21 +1,29 @@
 #pragma once
 
+#include "Scene/GameScene.hpp"
 #include <chrono>
 #include <cstddef>
 #include <utility>
 
 namespace Arcade::Shared {
-class IGameView {
+class GameView {
 public:
-  virtual ~IGameView() = default;
+  int getScore() const;
+  void setScore(int score);
 
-  virtual int getScore() const = 0;
-  virtual void setScore(int score) = 0;
+  std::chrono::milliseconds getPartyDuration() const;
+  void setPartyDuration(std::chrono::milliseconds duration);
 
-  virtual std::chrono::milliseconds getPartyDuration() const = 0;
-  virtual void setPartyDuration(std::chrono::milliseconds duration) = 0;
+  std::pair<std::size_t, std::size_t> getMapSize() const;
+  void setMapSize(std::size_t width, std::size_t height);
 
-  virtual std::pair<std::size_t, std::size_t> getMapSize() const = 0;
-  virtual void setMapSize(std::size_t width, std::size_t height) = 0;
+  const Scene::GameScene &getScene() const;
+  void setScene(const Scene::GameScene &scene);
+
+private:
+  int m_score = 0;
+  std::chrono::milliseconds m_partyDuration = std::chrono::milliseconds(0);
+  std::pair<std::size_t, std::size_t> m_mapSize = {0, 0};
+  Scene::GameScene m_scene;
 };
 } // namespace Arcade::Shared
