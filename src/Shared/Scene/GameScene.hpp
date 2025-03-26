@@ -1,17 +1,17 @@
 #pragma once
 
-#include "GameText.hpp"
+#include "Drawable.hpp"
+#include <memory>
 #include <vector>
 
 namespace Arcade::Shared::Scene {
 class GameScene {
 public:
-  void clear();
-
-  void pushText(const GameText &text);
-  const std::vector<GameText> &getTexts() const;
+  void clearDrawables();
+  void addDrawable(std::unique_ptr<IDrawable> drawable);
+  const std::vector<std::unique_ptr<IDrawable>> &getDrawables() const;
 
 private:
-  std::vector<GameText> m_texts;
+  std::vector<std::unique_ptr<IDrawable>> m_drawables;
 };
 } // namespace Arcade::Shared::Scene
