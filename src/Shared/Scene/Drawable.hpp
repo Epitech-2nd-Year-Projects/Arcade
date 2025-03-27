@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <filesystem>
 #include <string>
+#include "ResourceIdentifier.hpp"
 
 namespace Arcade::Shared::Scene {
 class IDrawable {
@@ -11,6 +12,7 @@ public:
 
   virtual void setPosition(float x, float y) = 0;
   virtual std::pair<float, float> getPosition() const = 0;
+  virtual ResourceIdentifier getResourceId() const = 0;
 };
 
 class Drawable : public IDrawable {
@@ -39,6 +41,8 @@ public:
   void setFontSize(std::size_t fontSize);
   std::size_t getFontSize() const;
 
+  ResourceIdentifier getResourceId() const override;
+
 private:
   std::string m_text;
   std::size_t m_fontSize = 12;
@@ -54,9 +58,12 @@ public:
   void setTexturePath(const std::filesystem::path &path);
   const std::filesystem::path &getTexturePath() const;
 
+  ResourceIdentifier getResourceId() const override;
+
 private:
   std::filesystem::path m_texturePath;
   Type m_type;
+  std::string m_resourceId = "default";
 };
 
 } // namespace Arcade::Shared::Scene
