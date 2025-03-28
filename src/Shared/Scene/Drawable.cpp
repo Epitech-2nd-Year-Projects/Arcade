@@ -1,6 +1,6 @@
 #include "Drawable.hpp"
 
-Drawable::Drawable() : m_position(0.0f, 0.0f) {}
+Arcade::Shared::Scene::Drawable::Drawable() : m_position(0.0f, 0.0f) {}
 
 Arcade::Shared::Scene::Drawable::Drawable(Drawable &&other) noexcept
     : m_position(std::move(other.m_position)) {}

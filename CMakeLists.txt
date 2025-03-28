@@ -23,6 +23,12 @@ set(SDL2_LIB_SOURCES
         src/Shared/Resource/ResourceIdentifier.cpp
         src/Shared/Resource/ResourceRegistry.cpp
         src/Shared/Scene/Drawable.cpp
+        src/Shared/GameView.cpp
+        src/Shared/Scene/GameScene.cpp
 )
 
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+
 add_library(arcade_sdl2 SHARED ${SDL2_LIB_SOURCES})
+target_link_libraries(arcade_sdl2 PRIVATE SDL2::SDL2 SDL2_image::SDL2_image)
