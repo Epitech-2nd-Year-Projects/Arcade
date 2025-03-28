@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <filesystem>
 #include <string>
+#include <utility>
+#include "../Resource/ResourceIdentifier.hpp"
 
 namespace Arcade::Shared::Scene {
 
@@ -19,6 +21,7 @@ public:
   virtual void setPosition(float x, float y) noexcept = 0;
   [[nodiscard]] virtual std::pair<float, float>
   getPosition() const noexcept = 0;
+  virtual Resource::ResourceIdentifier getResourceId() const = 0;
 };
 
 class Drawable : public IDrawable {
@@ -41,30 +44,42 @@ protected:
 
 class GameText final : public Drawable {
 public:
+  GameText();
+  ~GameText();
+
   void setText(std::string_view text);
   [[nodiscard]] std::string_view getText() const noexcept;
 
   void setFontSize(std::size_t fontSize) noexcept;
   [[nodiscard]] std::size_t getFontSize() const noexcept;
 
+  Resource::ResourceIdentifier getResourceId() const override;
+
 private:
   std::string m_text;
   std::size_t m_fontSize = 12;
+  static const Resource::ResourceIdentifier TEXT_RESOURCE;
 };
 
 class GameSprite final : public Drawable {
-  enum class SpriteType { Player, Enemy, Wall, Floor };
-
+<<<<<<< HEAD
 public:
-  void setType(SpriteType type) noexcept;
-  [[nodiscard]] SpriteType getType() const noexcept;
+  GameSprite();
+  explicit GameSprite(Resource::ResourceType type,
+                      const std::string &state = "default");
+  ~GameSprite() override = default;
 
-  void setTexturePath(const std::filesystem::path &path);
-  [[nodiscard]] const std::filesystem::path &getTexturePath() const noexcept;
+  void setResourceType(Resource::ResourceType type);
+  Resource::ResourceType getResourceType() const;
+
+  void setState(const std::string &state);
+  const std::string &getState() const;
+
+  Resource::ResourceIdentifier getResourceId() const override;
 
 private:
-  std::filesystem::path m_texturePath;
-  SpriteType m_type;
+  Resource::ResourceType m_resourceType;
+  std::string m_state;
 };
 
 template <typename T, typename... Args>

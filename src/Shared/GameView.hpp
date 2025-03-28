@@ -2,11 +2,12 @@
 
 #include "Scene/GameScene.hpp"
 #include <chrono>
+#include <memory>
 
 namespace Arcade::Shared {
 class GameView {
 public:
-  GameView() = default;
+  GameView();
   ~GameView();
 
   GameView(const GameView &) = delete;
@@ -22,11 +23,12 @@ public:
   void setPartyDuration(std::chrono::milliseconds duration);
 
   const Scene::GameScene &getScene() const;
-  void setScene(const Scene::GameScene &scene);
+  Scene::GameScene &getScene();
+  void setScene(std::unique_ptr<Scene::GameScene> scene);
 
 private:
   int m_score = 0;
   std::chrono::milliseconds m_partyDuration = std::chrono::milliseconds(0);
-  Scene::GameScene m_scene;
+  std::unique_ptr<Scene::GameScene> m_scene;
 };
 } // namespace Arcade::Shared
