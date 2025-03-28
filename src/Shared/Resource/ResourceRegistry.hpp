@@ -4,7 +4,7 @@
 #include <map>
 #include "ResourceIdentifier.hpp"
 
-namespace Arcade::Shared {
+namespace Arcade::Shared::Resource {
 class ResourceRegistry {
 public:
   ResourceRegistry() = default;

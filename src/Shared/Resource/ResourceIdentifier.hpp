@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace Arcade::Shared {
+namespace Arcade::Shared::Resource {
 enum class ResourceType {
   Player,
   Enemy,
@@ -17,6 +17,8 @@ public:
 
   ResourceType getType() const;
   const std::string &getId() const;
+
+  bool operator <(const ResourceIdentifier &other) const;
 
 private:
   ResourceType m_type;
