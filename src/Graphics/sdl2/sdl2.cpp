@@ -1,13 +1,12 @@
 #include "sdl2.hpp"
-#include <iostream>
 #include <SDL2/SDL_image.h>
+#include <iostream>
 
-extern "C" Arcade::Shared::IDisplay* createDisplay() {
+extern "C" Arcade::Shared::IDisplay *createDisplay() {
   return new Arcade::Graphics::SDL2;
 }
 
-Arcade::Graphics::SDL2::SDL2()
-  : m_window(nullptr), m_renderer(nullptr) {
+Arcade::Graphics::SDL2::SDL2() : m_window(nullptr), m_renderer(nullptr) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL_Init error: " << SDL_GetError() << std::endl;
     return;
@@ -18,14 +17,9 @@ Arcade::Graphics::SDL2::SDL2()
     return;
   }
 
-  m_window = SDL_CreateWindow(
-    "Arcade",
-    SDL_WINDOWPOS_UNDEFINED,
-    SDL_WINDOWPOS_UNDEFINED,
-    1920,
-    1080,
-    SDL_WINDOW_SHOWN
-  );
+  m_window =
+      SDL_CreateWindow("Arcade", SDL_WINDOWPOS_UNDEFINED,
+                       SDL_WINDOWPOS_UNDEFINED, 1920, 1080, SDL_WINDOW_SHOWN);
 
   if (m_window == nullptr) {
     std::cerr << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
@@ -59,7 +53,7 @@ Arcade::Graphics::SDL2::~SDL2() {
   SDL_Quit();
 }
 
-void Arcade::Graphics::SDL2::display(Shared::GameView& gameView) {
+void Arcade::Graphics::SDL2::display(Shared::GameView &gameView) {
   SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
   SDL_RenderClear(m_renderer);
 
@@ -70,18 +64,16 @@ void Arcade::Graphics::SDL2::display(Shared::GameView& gameView) {
   SDL_RenderPresent(m_renderer);
 }
 
-void Arcade::Graphics::SDL2::renderDrawable(const Shared::Scene::IDrawable& drawable) {
-  const Shared::Resource::ResourceIdentifier resourceId = drawable.getResourceId();
+void Arcade::Graphics::SDL2::renderDrawable(
+    const Shared::Scene::IDrawable &drawable) {
+  const Shared::Resource::ResourceIdentifier resourceId =
+      drawable.getResourceId();
 
   auto [x, y] = drawable.getPosition();
-  SDL_Rect rect = {
-    static_cast<int>(x),
-    static_cast<int>(y),
-    64,
-    64
-  };
+  SDL_Rect rect = {static_cast<int>(x), static_cast<int>(y), 64, 64};
 
-  const auto *textDrawable = dynamic_cast<const Shared::Scene::GameText *>(&drawable);
+  const auto *textDrawable =
+      dynamic_cast<const Shared::Scene::GameText *>(&drawable);
   if (textDrawable != nullptr) {
     return;
   }
@@ -96,7 +88,6 @@ void Arcade::Graphics::SDL2::renderDrawable(const Shared::Scene::IDrawable& draw
 Arcade::Shared::GameEvent Arcade::Graphics::SDL2::getGameEvent() {
   Arcade::Shared::GameEvent event;
   SDL_Event sdlEvent;
-
 
   return event;
 }

@@ -1,8 +1,7 @@
 #include "ResourceIdentifier.hpp"
 
 Arcade::Shared::Resource::ResourceIdentifier::ResourceIdentifier(
-    ResourceType type,
-    const std::string &id)
+    ResourceType type, const std::string &id)
     : m_type(type), m_id(id) {}
 
 Arcade::Shared::Resource::ResourceType
@@ -10,8 +9,7 @@ Arcade::Shared::Resource::ResourceIdentifier::getType() const {
   return m_type;
 }
 
-const std::string &
-Arcade::Shared::Resource::ResourceIdentifier::getId() const {
+const std::string &Arcade::Shared::Resource::ResourceIdentifier::getId() const {
   return m_id;
 }
 

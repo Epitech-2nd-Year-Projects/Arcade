@@ -1,8 +1,8 @@
 #pragma once
 
+#include "ResourceIdentifier.hpp"
 #include <filesystem>
 #include <map>
-#include "ResourceIdentifier.hpp"
 
 namespace Arcade::Shared::Resource {
 class ResourceRegistry {
@@ -10,11 +10,9 @@ public:
   ResourceRegistry() = default;
   ~ResourceRegistry() = default;
 
-  void registerResource(
-    const ResourceIdentifier &id,
-    const std::filesystem::path &graphicalPath,
-    const std::string &textRepresentation
-    );
+  void registerResource(const ResourceIdentifier &id,
+                        const std::filesystem::path &graphicalPath,
+                        const std::string &textRepresentation);
 
   static ResourceRegistry &getInstance();
 
@@ -28,4 +26,4 @@ private:
   std::map<ResourceIdentifier, std::filesystem::path> m_graphicalPaths;
   std::map<ResourceIdentifier, std::string> m_textRepresentations;
 };
-}
+} // namespace Arcade::Shared::Resource

@@ -1,9 +1,9 @@
 #pragma once
 
+#include <SDL2/SDL.h>
 #include <filesystem>
 #include <map>
 #include <string>
-#include <SDL2/SDL.h>
 
 #include "../../Shared/Resource/ResourceIdentifier.hpp"
 
@@ -21,4 +21,4 @@ private:
   SDL_Renderer *m_renderer;
   std::map<std::string, SDL_Texture *> m_textures;
 };
-}
+} // namespace Arcade::Graphics

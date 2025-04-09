@@ -1,9 +1,9 @@
-#include <SDL2/SDL_image.h>
 #include "ResourceManager.hpp"
 #include "../../Shared/Resource/ResourceRegistry.hpp"
+#include <SDL2/SDL_image.h>
 
-Arcade::Graphics::ResourceManager::ResourceManager(SDL_Renderer* renderer)
-  : m_renderer(renderer) {}
+Arcade::Graphics::ResourceManager::ResourceManager(SDL_Renderer *renderer)
+    : m_renderer(renderer) {}
 
 Arcade::Graphics::ResourceManager::~ResourceManager() {
   for (auto &[path, texture] : m_textures) {
@@ -14,8 +14,10 @@ Arcade::Graphics::ResourceManager::~ResourceManager() {
   m_textures.clear();
 }
 
-SDL_Texture *Arcade::Graphics::ResourceManager::getTexture(const Shared::Resource::ResourceIdentifier& id) {
-  std::filesystem::path path = Shared::Resource::ResourceRegistry::getInstance().getGraphicalPath(id);
+SDL_Texture *Arcade::Graphics::ResourceManager::getTexture(
+    const Shared::Resource::ResourceIdentifier &id) {
+  std::filesystem::path path =
+      Shared::Resource::ResourceRegistry::getInstance().getGraphicalPath(id);
 
   auto it = m_textures.find(path.string());
   if (it != m_textures.end()) {
@@ -29,7 +31,8 @@ SDL_Texture *Arcade::Graphics::ResourceManager::getTexture(const Shared::Resourc
   return texture;
 }
 
-SDL_Texture* Arcade::Graphics::ResourceManager::loadTexture(const std::filesystem::path& path) {
+SDL_Texture *Arcade::Graphics::ResourceManager::loadTexture(
+    const std::filesystem::path &path) {
   SDL_Surface *surface = IMG_Load(path.string().c_str());
   if (surface == nullptr) {
     return nullptr;
