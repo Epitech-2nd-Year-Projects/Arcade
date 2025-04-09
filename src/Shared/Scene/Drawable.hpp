@@ -62,7 +62,6 @@ private:
 };
 
 class GameSprite final : public Drawable {
-<<<<<<< HEAD
 public:
   GameSprite();
   explicit GameSprite(Resource::ResourceType type,
