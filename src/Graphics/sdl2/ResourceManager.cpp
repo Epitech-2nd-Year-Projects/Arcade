@@ -33,15 +33,26 @@ SDL_Texture *Arcade::Graphics::ResourceManager::getTexture(
 
 SDL_Texture *Arcade::Graphics::ResourceManager::loadTexture(
     const std::filesystem::path &path) {
+  if (!std::filesystem::exists(path)) {
+    std::cerr << "Texture file not found: " << path.string() << std::endl;
+    return nullptr;
+  }
+
   SDL_Surface *surface = IMG_Load(path.string().c_str());
   if (surface == nullptr) {
+    std::cerr << "Failed to load texture: " << path.string()
+              << " - " << IMG_GetError() << std::endl;
     return nullptr;
   }
 
   SDL_Texture *texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+  SDL_FreeSurface(surface);
+
   if (texture == nullptr) {
+    std::cerr << "Failed to create texture from surface: "
+              << SDL_GetError() << std::endl;
     return nullptr;
   }
-  SDL_FreeSurface(surface);
+
   return texture;
 }
