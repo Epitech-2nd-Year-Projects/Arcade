@@ -93,7 +93,8 @@ Arcade::Shared::GameEvent Arcade::Graphics::SDL2::getGameEvent() {
     switch (sdlEvent.type) {
       case SDL_QUIT:
         event.setType(Arcade::Shared::GameEvent::Type::Quit);
-      return event;
+        events.push_back(event);
+        break;
       case SDL_KEYDOWN:
         switch (sdlEvent.key.keysym.sym) {
           case SDLK_UP:
