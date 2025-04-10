@@ -1,10 +1,10 @@
 #pragma once
 
+#include "../Resource/ResourceIdentifier.hpp"
 #include <cstddef>
 #include <filesystem>
 #include <string>
 #include <utility>
-#include "../Resource/ResourceIdentifier.hpp"
 
 namespace Arcade::Shared::Scene {
 
@@ -26,7 +26,7 @@ public:
 
 class Drawable : public IDrawable {
 public:
-  Drawable() = default;
+  Drawable();
   ~Drawable() override = default;
 
   Drawable(const Drawable &) = delete;
@@ -62,7 +62,6 @@ private:
 };
 
 class GameSprite final : public Drawable {
-<<<<<<< HEAD
 public:
   GameSprite();
   explicit GameSprite(Resource::ResourceType type,

@@ -8,15 +8,14 @@ ResourceRegistry &ResourceRegistry::getInstance() {
 }
 
 void ResourceRegistry::registerResource(
-    const ResourceIdentifier &id,
-    const std::filesystem::path &graphicalPath,
+    const ResourceIdentifier &id, const std::filesystem::path &graphicalPath,
     const std::string &textRepresentation) {
   m_graphicalPaths[id] = graphicalPath;
   m_textRepresentations[id] = textRepresentation;
 }
 
-std::filesystem::path ResourceRegistry::getGraphicalPath(
-    const ResourceIdentifier &id) const {
+std::filesystem::path
+ResourceRegistry::getGraphicalPath(const ResourceIdentifier &id) const {
   auto it = m_graphicalPaths.find(id);
   if (it != m_graphicalPaths.end()) {
     return it->second;
@@ -24,8 +23,8 @@ std::filesystem::path ResourceRegistry::getGraphicalPath(
   return {};
 }
 
-std::string ResourceRegistry::getTextRepresentation(
-    const ResourceIdentifier &id) const {
+std::string
+ResourceRegistry::getTextRepresentation(const ResourceIdentifier &id) const {
   auto it = m_textRepresentations.find(id);
   if (it != m_textRepresentations.end()) {
     return it->second;
@@ -38,4 +37,4 @@ void ResourceRegistry::reset() {
   m_textRepresentations.clear();
 }
 
-}  // namespace Arcade::Shared::Resource
+} // namespace Arcade::Shared::Resource

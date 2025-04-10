@@ -2,8 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "ResourceManager.hpp"
 #include "../../Shared/IDisplay.hpp"
+#include "ResourceManager.hpp"
 
 namespace Arcade::Graphics {
 class SDL2 : public Shared::IDisplay {
@@ -21,5 +21,4 @@ private:
   SDL_Renderer *m_renderer;
   std::unique_ptr<ResourceManager> m_resourceManager;
 };
-}
-
+} // namespace Arcade::Graphics
