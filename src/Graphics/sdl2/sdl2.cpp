@@ -97,6 +97,29 @@ Arcade::Shared::GameEvent Arcade::Graphics::SDL2::getGameEvent() {
   Arcade::Shared::GameEvent event;
   SDL_Event sdlEvent;
 
+  while (SDL_PollEvent(&sdlEvent)) {
+    switch (sdlEvent.type) {
+      case SDL_QUIT:
+        event.setType(Arcade::Shared::GameEvent::Type::Quit);
+      return event;
+      case SDL_KEYDOWN:
+        switch (sdlEvent.key.keysym.sym) {
+          case SDLK_UP:
+            event.setType(Arcade::Shared::GameEvent::Type::Up);
+          return event;
+          case SDLK_DOWN:
+            event.setType(Arcade::Shared::GameEvent::Type::Down);
+          return event;
+          case SDLK_LEFT:
+            event.setType(Arcade::Shared::GameEvent::Type::Left);
+          return event;
+          case SDLK_RIGHT:
+            event.setType(Arcade::Shared::GameEvent::Type::Right);
+          return event;
+        }
+      break;
+    }
+  }
 
   return event;
 }
